@@ -5,6 +5,7 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"time"
 
 	"github.com/breakD/wb_client/api"
 	"github.com/breakD/wb_client/wbclient"
@@ -28,12 +29,17 @@ func main() {
 	c.Connect()
 
 	for c.WsConn() == nil {
+		// waiting for the ws connecting
+		time.Sleep(time.Second)
 	}
 
 	api.Execute("login", c)
+	fmt.Println("logging")
+	time.Sleep(time.Second)
 
 	for {
 		reader := bufio.NewReader(os.Stdin)
+		time.Sleep(time.Second)
 		fmt.Print("Enter api: ")
 		text, _ := reader.ReadString('\n')
 		fmt.Println(text)

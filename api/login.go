@@ -14,16 +14,6 @@ type LoginReq struct {
 	Token   string `json:"token"`
 }
 
-// LoginRep 登录响应
-type LoginRep struct {
-	rpBase
-	UserID   string `json:"user_id,omitempty"`
-	UID      string `json:"uid,omitempty"`
-	CurState string `json:"cur_state,omitempty"`
-	Rcode    string `json:"rcode,omitempty"`
-	Rdesc    string `json:"rdesc,omitempty"`
-}
-
 func newLoginReq(rpb rpBase, params map[string]interface{}) (retRp *LoginReq, retErr error) {
 	defer func() {
 		if r := recover(); r != nil {

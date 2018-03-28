@@ -40,47 +40,35 @@ func (c Client) SendMessage(msg []byte) error {
 }
 
 func (c *Client) run() {
-
 	u := url.URL{Scheme: "ws", Host: c.addr, Path: "/ws"}
 	fmt.Printf("connecting to %s\n", u.String())
 
 	conn, _, err := websocket.DefaultDialer.Dial(u.String(), nil)
 	if err != nil {
 		log.Fatal("dial:", err)
+		return
 	}
-	c.wsConn = conn
-
 	defer conn.Close()
 
-	done := make(chan struct{})
+	c.wsConn = conn
 
 	// 接收消息
 	go func() {
-
 		defer conn.Close()
-		defer close(done)
 		for !c.isStop {
 			_, message, err := conn.ReadMessage()
 			if err != nil {
-				fmt.Errorf("[ERROR] read: %s", err)
+				fmt.Printf("[ERROR] read: %s\n", err)
 				return
 			}
-			fmt.Printf("recv message: %s\n", string(message))
+
 			if string(message) == "pong" {
 				continue
 			}
+
+			fmt.Printf("recv message: %s\n", string(message))
 		}
 	}()
-
-	// 发送登录请求
-	// msgID := uuid.NewV4().String()
-	// c.send(code.REQ, code.LoginMethod, msgID, &map[string]interface{}{
-	// 	"user_id": c.userID,
-	// 	"app_id":  "fbcc5d3df6dfa25c418910a3611020eb",
-	// 	"res_id":  "stress",
-	// 	"state":   "idle",
-	// 	"token":   signStr,
-	// })
 
 	// 心跳和停止消息
 	ticker := time.NewTicker(50 * time.Second)
@@ -88,10 +76,10 @@ func (c *Client) run() {
 
 	for {
 		select {
-		case _ = <-ticker.C:
+		case <-ticker.C:
 			err := c.SendMessage([]byte("ping"))
 			if err != nil {
-				fmt.Errorf("[ERROR] write: %s", err)
+				fmt.Printf("[ERROR] write: %s\n", err)
 				return
 			}
 		}

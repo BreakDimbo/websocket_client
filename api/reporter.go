@@ -26,7 +26,7 @@ type NewParam struct {
 func NewReport(param *NewParam) (Reporter, error) {
 	rpb := rpBase{
 		Ver:       "1.0",
-		Ua:        "stress-test",
+		Ua:        "robot-dan",
 		SeqID:     param.SeqID,
 		MsgID:     param.MsgID,
 		MsgType:   param.MsgType,
@@ -40,10 +40,10 @@ func NewReport(param *NewParam) (Reporter, error) {
 	switch {
 	case equal(code.REQ, code.LoginMethod, msgType, methodStr):
 		return newLoginReq(rpb, param.Custom)
-		// case equal(code.REQ, code.GetChannelTokenMethod, msgType, methodStr):
-		// 	return newGetChannelTokenReq(rpb, param.Custom)
-		// case equal(code.REQ, code.InviteMethod, msgType, methodStr):
-		// 	return newInviteReq(rpb, param.Custom)
+	case equal(code.REQ, code.SetStateMethod, msgType, methodStr):
+		return newSetState(rpb, param.Custom)
+	case equal(code.REQ, code.DailoutMethod, msgType, methodStr):
+		return newOriginate(rpb, param.Custom)
 		// case equal(code.ACK, code.InviteMethod, msgType, methodStr):
 		// 	return newInviteAck(rpb, param.Custom)
 		// case equal(code.REQ, code.AnswerMethod, msgType, methodStr):
