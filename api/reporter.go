@@ -40,28 +40,12 @@ func NewReport(param *NewParam) (Reporter, error) {
 	switch {
 	case equal(code.REQ, code.LoginMethod, msgType, methodStr):
 		return newLoginReq(rpb, param.Custom)
+	case equal(code.REQ, code.LogoutMethod, msgType, methodStr):
+		return newLogout(rpb, param.Custom)
 	case equal(code.REQ, code.SetStateMethod, msgType, methodStr):
 		return newSetState(rpb, param.Custom)
 	case equal(code.REQ, code.DailoutMethod, msgType, methodStr):
 		return newOriginate(rpb, param.Custom)
-		// case equal(code.ACK, code.InviteMethod, msgType, methodStr):
-		// 	return newInviteAck(rpb, param.Custom)
-		// case equal(code.REQ, code.AnswerMethod, msgType, methodStr):
-		// 	return newAnswerReq(rpb, param.Custom)
-		// case equal(code.ACK, code.AnswerMethod, msgType, methodStr):
-		// 	return newAnswerAck(rpb, param.Custom)
-		// case equal(code.REQ, code.ByeMethod, msgType, methodStr):
-		// 	return newByeReq(rpb, param.Custom)
-		// case equal(code.ACK, code.ByeMethod, msgType, methodStr):
-		// 	return newByeAck(rpb, param.Custom)
-		// case equal(code.REQ, code.CancelMethod, msgType, methodStr):
-		// 	return newCancelReq(rpb, param.Custom)
-		// case equal(code.ACK, code.CancelMethod, msgType, methodStr):
-		// 	return newCancelAck(rpb, param.Custom)
-		// case equal(code.NTF, code.StartMediaMethod, msgType, methodStr):
-		// 	return newStartMediaNtf(rpb, param.Custom)
-		// case equal(code.NTF, code.StopMediaMethod, msgType, methodStr):
-		// 	return newStopMediaNtf(rpb, param.Custom)
 	}
 	return nil, fmt.Errorf("unknow report method")
 }

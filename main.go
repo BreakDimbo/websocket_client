@@ -37,11 +37,15 @@ func main() {
 	fmt.Println("logging")
 	time.Sleep(time.Second)
 
+	reader := bufio.NewReader(os.Stdin)
+
 	for {
-		reader := bufio.NewReader(os.Stdin)
 		time.Sleep(time.Second)
 		fmt.Print("Enter api: ")
 		text, _ := reader.ReadString('\n')
+		if text == "\n" {
+			continue
+		}
 		fmt.Println(text)
 		api.Execute(text, c)
 	}

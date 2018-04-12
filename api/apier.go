@@ -21,6 +21,11 @@ func Execute(cmd string, c *wbclient.Client) error {
 			"state":    "idle",
 			"token":    "tmp:token",
 		})
+	case code.LogoutMethod:
+		send(c, code.REQ, code.LogoutMethod, msgID, &map[string]interface{}{
+			"agent_id": "1443",
+			"app_id":   "f781fd92-9e96-4195-7a7e-257307edb4ad",
+		})
 	case "set_state_idle":
 		send(c, code.REQ, code.SetStateMethod, msgID, &map[string]interface{}{
 			"agent_id": "1443",
@@ -35,7 +40,6 @@ func Execute(cmd string, c *wbclient.Client) error {
 			"state":    "busy",
 			"token":    "tmp_token",
 		})
-
 	case "dialout":
 		send(c, code.REQ, code.DailoutMethod, msgID, &map[string]interface{}{
 			"agent_id":       "1443",
