@@ -40,7 +40,7 @@ func main() {
 	reader := bufio.NewReader(os.Stdin)
 
 	for {
-		time.Sleep(time.Second)
+		time.Sleep(500 * time.Millisecond)
 		fmt.Print("Enter api: ")
 		text, _ := reader.ReadString('\n')
 		if text == "\n" {
