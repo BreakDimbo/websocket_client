@@ -19,6 +19,7 @@ func Execute(cmd string, c *wbclient.Client) error {
 			"agent_id": "1443",
 			"app_id":   "f781fd92-9e96-4195-7a7e-257307edb4ad",
 			"state":    "idle",
+			"number":   "92795089691002",
 			"token":    "tmp:token",
 		})
 	case code.LogoutMethod:

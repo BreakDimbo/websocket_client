@@ -8,8 +8,8 @@ import (
 // Logout 登录请求
 type Logout struct {
 	rpBase
-	AgentId string `json:"agent_id,omitempty"`
-	AppID   string `json:"app_id,omitempty"`
+	AgentId string `json:"AgentId,omitempty"`
+	AppID   string `json:"AppId,omitempty"`
 }
 
 func newLogout(rpb rpBase, params map[string]interface{}) (retRp *Logout, retErr error) {

@@ -11,7 +11,7 @@ type OriginateReq struct {
 	Called        string `json:"DestNumber" alias:"DestNumber"`
 	CalledDisplay string `json:"SpNumber" alias:"SpNumber"`
 	AgentId       string `json:"AgentId" alias:"AgentId"`
-	AppId         string `json:"app_id" alias:"app_id"`
+	AppId         string `json:"AppId" alias:"AppId"`
 }
 
 func newOriginate(rpb rpBase, params map[string]interface{}) (retRp *OriginateReq, retErr error) {

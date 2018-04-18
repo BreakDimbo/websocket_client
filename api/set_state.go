@@ -8,10 +8,10 @@ import (
 // SetStateReq 登录请求
 type SetStateReq struct {
 	rpBase
-	AgentId string `json:"agent_id,omitempty"`
-	AppID   string `json:"app_id,omitempty"`
-	State   string `json:"state,omitempty"`
-	Token   string `json:"token"`
+	AgentId string `json:"AgentId,omitempty"`
+	AppID   string `json:"AppId,omitempty"`
+	State   string `json:"State,omitempty"`
+	Token   string `json:"Token"`
 }
 
 func newSetState(rpb rpBase, params map[string]interface{}) (retRp *SetStateReq, retErr error) {

@@ -8,10 +8,11 @@ import (
 // LoginReq 登录请求
 type LoginReq struct {
 	rpBase
-	AgentId string `json:"agent_id,omitempty"`
-	AppID   string `json:"app_id,omitempty"`
-	State   string `json:"state,omitempty"`
-	Token   string `json:"token"`
+	AgentId string `json:"AgentId,omitempty"`
+	AppID   string `json:"AppId,omitempty"`
+	State   string `json:"State,omitempty"`
+	Token   string `json:"Token"`
+	Number  string `json:"Number"`
 }
 
 func newLoginReq(rpb rpBase, params map[string]interface{}) (retRp *LoginReq, retErr error) {
@@ -28,6 +29,7 @@ func newLoginReq(rpb rpBase, params map[string]interface{}) (retRp *LoginReq, re
 		AppID:   params["app_id"].(string),
 		State:   params["state"].(string),
 		Token:   params["token"].(string),
+		Number:  params["number"].(string),
 	}
 	return &rp, nil
 }

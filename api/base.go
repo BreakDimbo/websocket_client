@@ -1,11 +1,11 @@
 package api
 
 type rpBase struct {
-	Ver       string `json:"ver,omitempty"`
-	Ua        string `json:"ua,omitempty"`
-	SeqID     int32  `json:"seq_id,omitempty"`
-	MsgID     string `json:"msg_id,omitempty"`
-	MsgType   string `json:"msg_type,omitempty"`
-	Method    string `json:"method,omitempty"`
-	Timestamp int64  `json:"timestamp,omitempty"`
+	Ver       string `json:"Ver,omitempty"`
+	Ua        string `json:"Ua,omitempty"`
+	SeqID     int32  `json:"SeqId,omitempty"`
+	MsgID     string `json:"MsgId,omitempty"`
+	MsgType   string `json:"MsgType,omitempty"`
+	Method    string `json:"Method,omitempty"`
+	Timestamp int64  `json:"Timestamp,omitempty"`
 }
